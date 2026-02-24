@@ -46,6 +46,16 @@ AILinearRegressionGradientDescentTest >> testInitializeWeightsToZeroOfSize [
 ]
 
 { #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testMaxIterationsReached [
+
+	model maxIterations: 10.
+
+	model fitX: self fixtureInput y: self fixtureOutput.
+
+	self assert: model performedIterations equals: model maxIterations
+]
+
+{ #category : 'tests' }
 AILinearRegressionGradientDescentTest >> testModelHasConvergedWhenCostDifferenceIsZero [
 
 	model costHistory: (Array with: 10 with: 10).
@@ -73,6 +83,17 @@ AILinearRegressionGradientDescentTest >> testModelHasNotConvergedWithEmptyCostHi
 AILinearRegressionGradientDescentTest >> testModelHasNotConvergedWithNoCostHistory [
 
 	self deny: model hasConverged
+]
+
+{ #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testNegativeMaxIterations [
+
+	model maxIterations: -1.
+
+	model fitX: self fixtureInput y: self fixtureOutput.
+
+	self assert: model performedIterations equals: 0.
+	self assert: model costHistory size equals: 1
 ]
 
 { #category : 'tests' }

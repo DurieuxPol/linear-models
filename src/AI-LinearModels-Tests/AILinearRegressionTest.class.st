@@ -8,10 +8,7 @@ Class {
 { #category : 'running' }
 AILinearRegressionTest >> regression [
 
-	^ AILinearRegression new
-		learningRate: 0.1;
-		maxIterations: 3000;
-		yourself
+	^ AILinearRegression learningRate: 0.1 maxIterations: 3000
 ]
 
 { #category : 'tests' }
