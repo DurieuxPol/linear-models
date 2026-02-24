@@ -28,6 +28,14 @@ AILinearRegressionGradientDescentTest >> testDivergingException [
 ]
 
 { #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testDivergingExceptionWhenCostsIncrease [
+
+	model costHistory: (Array with: 0 with: 10).
+
+	self should: [ model hasConverged ] raise: ModelStartingToDivergeException 
+]
+
+{ #category : 'tests' }
 AILinearRegressionGradientDescentTest >> testInitializeWeightsToZeroOfSize [
 
 	| expectedInitWeigths |
@@ -38,7 +46,46 @@ AILinearRegressionGradientDescentTest >> testInitializeWeightsToZeroOfSize [
 ]
 
 { #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testModelHasConvergedWhenCostDifferenceIsZero [
+
+	model costHistory: (Array with: 10 with: 10).
+
+	self assert: model hasConverged
+]
+
+{ #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testModelHasConvergedWhenLastCostIsZero [
+
+	model costHistory: (Array with: 10 with: 0).
+
+	self assert: model hasConverged
+]
+
+{ #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testModelHasNotConvergedWithEmptyCostHistory [
+
+	model costHistory: OrderedCollection new.
+
+	self deny: model hasConverged
+]
+
+{ #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testModelHasNotConvergedWithNoCostHistory [
+
+	self deny: model hasConverged
+]
+
+{ #category : 'tests' }
 AILinearRegressionGradientDescentTest >> testPerformedIterationsIsInitialized [
 
 	self assert: model performedIterations equals: nil
+]
+
+{ #category : 'tests' }
+AILinearRegressionGradientDescentTest >> testReachMaxIterations [
+
+	model maxIterations: 10.
+	model fitX: self fixtureInput y: self fixtureOutput.
+
+	self assert: model performedIterations >= model maxIterations
 ]
