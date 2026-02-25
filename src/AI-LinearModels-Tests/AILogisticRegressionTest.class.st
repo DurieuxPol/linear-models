@@ -40,6 +40,20 @@ AILogisticRegressionTest >> setUp [
 ]
 
 { #category : 'tests' }
+AILogisticRegressionTest >> testCostFunction [
+
+	model := AILogisticRegression new initializeWeightsToZeroOfSize: 1.
+	input := {
+		         { 0.48498 }.
+		         { 8.47382 }.
+		         { -2.47483 }.
+		         { -0.47483 } }.
+	output := { 1. 1. 0. 0 }.
+
+	self assert: (model costFunctionX: input y: output) equals: 0.5 ln negated
+]
+
+{ #category : 'tests' }
 AILogisticRegressionTest >> testExactFitSingleVariable [
 
 	| actualOutput |
