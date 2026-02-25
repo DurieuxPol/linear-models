@@ -2,24 +2,25 @@
 An AILogisticRegressionTest is a test class for testing the behavior of AILogisticRegression
 "
 Class {
-	#name : #AILogisticRegressionTest,
-	#superclass : #AILinearRegressionGradientDescentTest,
+	#name : 'AILogisticRegressionTest',
+	#superclass : 'AILinearRegressionGradientDescentTest',
 	#instVars : [
 		'newInput',
 		'expectedOutput',
 		'input',
 		'output'
 	],
-	#category : 'AI-LinearModels-Tests'
+	#category : 'AI-LinearModels-Tests',
+	#package : 'AI-LinearModels-Tests'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 AILogisticRegressionTest >> regression [
 
 	^ AILogisticRegression new
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 AILogisticRegressionTest >> setUp [
 
 	| inputPositive inputNegative |
@@ -38,8 +39,9 @@ AILogisticRegressionTest >> setUp [
 	expectedOutput := #( 1 1 1 0 0 0 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILogisticRegressionTest >> testCostFunction [
+	"Checks that the cost function of the model gives the right result"
 
 	model := AILogisticRegression new initializeWeightsToZeroOfSize: 1.
 	input := {
@@ -52,7 +54,7 @@ AILogisticRegressionTest >> testCostFunction [
 	self assert: (model costFunctionX: input y: output) equals: 0.5 ln negated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILogisticRegressionTest >> testExactFitSingleVariable [
 
 	| actualOutput |
@@ -68,15 +70,17 @@ AILogisticRegressionTest >> testExactFitSingleVariable [
 		do: [ :actual :expected | self assert: actual equals: expected ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILogisticRegressionTest >> testFixedIterations [
+	"Checks that the model, with a given input and a fixed random number generator, always converges with the same amount of iterations
+This model converges very slowly and doesn't reach convergence, so it performs the maximum number of iterations and ends (but since it's a logistic regression it's not a problem)"
 
 	model fitX: input y: output random: (Random seed: 42).
 
 	self assert: model performedIterations equals: 5000
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 AILogisticRegressionTest >> testPredictProbabilities [
 
 	| actualOutput actualOutputPositive actualOutputNegative |
