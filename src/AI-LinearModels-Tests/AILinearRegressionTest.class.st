@@ -53,6 +53,14 @@ AILinearRegressionTest >> testExactFitSingleVariable [
 ]
 
 { #category : 'tests' }
+AILinearRegressionTest >> testFixedIterations [
+
+	model fitX: self fixtureInput y: self fixtureOutput random: (Random seed: 42).
+
+	self assert: model performedIterations equals: 424
+]
+
+{ #category : 'tests' }
 AILinearRegressionTest >> testWeightDerivativeforXCostDerivative [
 	
 	self

@@ -30,7 +30,7 @@ AILinearRegressionGradientDescentTest >> testDivergingException [
 { #category : 'tests' }
 AILinearRegressionGradientDescentTest >> testDivergingExceptionWhenCostsIncrease [
 
-	model costHistory: (Array with: 0 with: 10).
+	model costHistory: (Array with: 0 with: 0.5).
 
 	self should: [ model hasConverged ] raise: ModelStartingToDivergeException 
 ]

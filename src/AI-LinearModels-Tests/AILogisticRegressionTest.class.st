@@ -56,6 +56,14 @@ AILogisticRegressionTest >> testExactFitSingleVariable [
 ]
 
 { #category : 'tests' }
+AILogisticRegressionTest >> testFixedIterations [
+
+	model fitX: input y: output random: (Random seed: 42).
+
+	self assert: model performedIterations equals: 5000
+]
+
+{ #category : 'tests' }
 AILogisticRegressionTest >> testPredictProbabilities [
 
 	| actualOutput actualOutputPositive actualOutputNegative |

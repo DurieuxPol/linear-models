@@ -90,7 +90,13 @@ AIAbstractLinearModel >> costHistory: aCollection [
 { #category : 'api' }
 AIAbstractLinearModel >> fitX: inputMatrix y: actualValues [
 
-	self initializeWeightsOfSize: inputMatrix anyOne size.
+	self fitX: inputMatrix y: actualValues random: Random new
+]
+
+{ #category : 'api' }
+AIAbstractLinearModel >> fitX: inputMatrix y: actualValues random: aRandom [
+
+	self initializeWeightsOfSize: inputMatrix anyOne size random: aRandom.
 
 	self costHistory: OrderedCollection new.
 	costHistory add: (self costFunctionX: inputMatrix y: actualValues).
@@ -135,19 +141,16 @@ AIAbstractLinearModel >> initialize [
 ]
 
 { #category : 'initialization' }
-AIAbstractLinearModel >> initializeRandomWeightsOfSize: aNumber [
+AIAbstractLinearModel >> initializeRandomWeightsOfSize: aNumber random: aRandom [
 
-	| rand |
-	rand := Random new.
-	
-	bias := rand next.
-	weights := (1 to: aNumber) collect: [ :i | rand next ].
+	bias := aRandom next.
+	weights := (1 to: aNumber) collect: [ :i | aRandom next ]
 ]
 
 { #category : 'initialization' }
-AIAbstractLinearModel >> initializeWeightsOfSize: aNumber [
+AIAbstractLinearModel >> initializeWeightsOfSize: aNumber random: random [
 
-	self initializeRandomWeightsOfSize: aNumber
+	self initializeRandomWeightsOfSize: aNumber random: random
 ]
 
 { #category : 'initialization' }
