@@ -1,29 +1,28 @@
 Class {
-	#name : 'AILinearRegressionLeastSquaresTest',
-	#superclass : 'AIAbstractLinearModelTest',
-	#category : 'AI-LinearModels-Tests',
-	#package : 'AI-LinearModels-Tests'
+	#name : #AILinearRegressionLeastSquaresTest,
+	#superclass : #AIAbstractLinearModelTest,
+	#category : 'AI-LinearModels-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionLeastSquaresTest >> fixtureInput [
 
 	^ self inputType rows: fixture inputMatrix 
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionLeastSquaresTest >> inputType [
 
 	^ AIColumnMajorMatrix 
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionLeastSquaresTest >> regression [
 
 	^ AILinearRegressionLeastSquares new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionLeastSquaresTest >> testExactFitSingleVariable [
 
 	| newInput expectedOutput actualOutput |
@@ -36,7 +35,7 @@ AILinearRegressionLeastSquaresTest >> testExactFitSingleVariable [
 	actualOutput with: expectedOutput do: [ :actual :expected | self assert: actual closeTo: expected precision: 0.001 ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionLeastSquaresTest >> testPredictionWithNonFittedModel [
 
 	| input |

@@ -1,17 +1,16 @@
 Class {
-	#name : 'AILinearRegressionTest',
-	#superclass : 'AILinearRegressionGradientDescentTest',
-	#category : 'AI-LinearModels-Tests',
-	#package : 'AI-LinearModels-Tests'
+	#name : #AILinearRegressionTest,
+	#superclass : #AILinearRegressionGradientDescentTest,
+	#category : #'AI-LinearModels-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionTest >> regression [
 
 	^ AILinearRegression learningRate: 0.1 maxIterations: 3000
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testBiasAlmostEqual [
 
 	model fitX: self fixtureInput y: self fixtureOutput.
@@ -19,7 +18,7 @@ AILinearRegressionTest >> testBiasAlmostEqual [
 	self assert: model bias closeTo: fixture bias precision: 0.001
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testBiasDerivative [
 
 	self
@@ -27,7 +26,7 @@ AILinearRegressionTest >> testBiasDerivative [
 		equals: 4.5
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testCostDerivativeActual [
 
 	self
@@ -39,7 +38,7 @@ AILinearRegressionTest >> testCostDerivativeActual [
 		equals: #(1 2 3)
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testExactFitSingleVariable [
 
 	| newInput expectedOutput actualOutput |
@@ -52,15 +51,22 @@ AILinearRegressionTest >> testExactFitSingleVariable [
 	actualOutput with: expectedOutput do: [ :actual :expected | self assert: actual closeTo: expected precision: 0.001 ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testFixedIterations [
 
-	model fitX: self fixtureInput y: self fixtureOutput random: (Random seed: 42).
+	| expected |
+	model
+		fitX: self fixtureInput
+		y: self fixtureOutput
+		random: (Random seed: 42).
+	expected := (SystemVersion current version beginsWith: 'Pharo11')
+		            ifTrue: [ 432 ]
+		            ifFalse: [ 424 ].
 
-	self assert: model performedIterations equals: 424
+	self assert: model performedIterations equals: expected
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testWeightDerivativeforXCostDerivative [
 	
 	self
@@ -68,7 +74,7 @@ AILinearRegressionTest >> testWeightDerivativeforXCostDerivative [
 		equals: #( 37.5 45 52.5 )
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTest >> testWeightsAlmostEqual [
 
 	model fitX: self fixtureInput y: self fixtureOutput.

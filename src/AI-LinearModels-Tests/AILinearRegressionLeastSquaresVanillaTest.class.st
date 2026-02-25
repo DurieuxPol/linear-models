@@ -1,23 +1,22 @@
 Class {
-	#name : 'AILinearRegressionLeastSquaresVanillaTest',
-	#superclass : 'AILinearRegressionLeastSquaresTest',
-	#category : 'AI-LinearModels-Tests',
-	#package : 'AI-LinearModels-Tests'
+	#name : #AILinearRegressionLeastSquaresVanillaTest,
+	#superclass : #AILinearRegressionLeastSquaresTest,
+	#category : 'AI-LinearModels-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionLeastSquaresVanillaTest >> inputType [
 
 	^ PMMatrix
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionLeastSquaresVanillaTest >> regression [
 
 	^ AILinearRegressionLeastSquaresVanilla new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionLeastSquaresVanillaTest >> testExactFitDoubleVariable [
 	"| newInput expectedOutput actualOutput initialInput initialOutput |
 	initialInput := #( #( 2 4 ) #( 3 2 ) #( 1 2 ) #( 5 1 ) #( 2 6 ) #( 6 3 ) ).
@@ -36,7 +35,7 @@ AILinearRegressionLeastSquaresVanillaTest >> testExactFitDoubleVariable [
 	self skip
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionLeastSquaresVanillaTest >> testExactFitSingleVariable [
 
 	self skip

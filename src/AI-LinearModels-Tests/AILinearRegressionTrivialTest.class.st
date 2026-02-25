@@ -1,15 +1,14 @@
 Class {
-	#name : 'AILinearRegressionTrivialTest',
-	#superclass : 'TestCase',
+	#name : #AILinearRegressionTrivialTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'model',
 		'fixture'
 	],
-	#category : 'AI-LinearModels-Tests',
-	#package : 'AI-LinearModels-Tests'
+	#category : 'AI-LinearModels-Tests'
 }
 
-{ #category : 'running' }
+{ #category : #running }
 AILinearRegressionTrivialTest >> setUp [
 
 	super setUp.
@@ -22,7 +21,7 @@ AILinearRegressionTrivialTest >> setUp [
 		learningRate: fixture learningRate
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testCostBeforeLearning [
 
 	| cost |
@@ -30,7 +29,7 @@ AILinearRegressionTrivialTest >> testCostBeforeLearning [
 	self assert: cost equals: fixture expectedCostBeforeLearning 
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testExpectedBiasAtFirstIteration [
 
 	model updateWeightsForX: fixture inputMatrix y: fixture outputVector.
@@ -38,7 +37,7 @@ AILinearRegressionTrivialTest >> testExpectedBiasAtFirstIteration [
 	self assert: model bias closeTo: fixture expectedBiasAtFirstIteration
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testExpectedBiasDerivativeAtFirstIteration [
 
 	| predictedOutputVector costDerivative biasDerivative |
@@ -50,7 +49,7 @@ AILinearRegressionTrivialTest >> testExpectedBiasDerivativeAtFirstIteration [
 	self assert: biasDerivative equals: fixture expectedBiasDerivativeAtFirstIteration
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testExpectedWeightDerivateAtFirstIteration [
 
 	| predictedOutputVector costDerivative weightDerivative |
@@ -61,7 +60,7 @@ AILinearRegressionTrivialTest >> testExpectedWeightDerivateAtFirstIteration [
 	self assert: weightDerivative equals: fixture expectedWeightDerivativeAtFirstIterarion
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testExpectedWeightsAtFirstIteration [
 
 	model updateWeightsForX: fixture inputMatrix y: fixture outputVector.
@@ -71,7 +70,7 @@ AILinearRegressionTrivialTest >> testExpectedWeightsAtFirstIteration [
 		do: [ :real : expected | self assert: real closeTo: expected ]
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AILinearRegressionTrivialTest >> testPredictionBeforeLearning [
 
 	| prediction |

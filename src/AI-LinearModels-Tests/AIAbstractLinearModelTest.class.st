@@ -1,45 +1,44 @@
 Class {
-	#name : 'AIAbstractLinearModelTest',
-	#superclass : 'TestCase',
+	#name : #AIAbstractLinearModelTest,
+	#superclass : #TestCase,
 	#instVars : [
 		'model',
 		'fixture'
 	],
-	#category : 'AI-LinearModels-Tests',
-	#package : 'AI-LinearModels-Tests'
+	#category : 'AI-LinearModels-Tests'
 }
 
-{ #category : 'testing' }
+{ #category : #testing }
 AIAbstractLinearModelTest class >> isAbstract [
 
 	^ self == AIAbstractLinearModelTest
 ]
 
-{ #category : 'testing' }
+{ #category : #testing }
 AIAbstractLinearModelTest class >> shouldInheritSelectors [
 
 	^ true
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AIAbstractLinearModelTest >> fixtureInput [
 
 	^ fixture inputMatrix
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AIAbstractLinearModelTest >> fixtureOutput [
 
 	^ fixture outputVector
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AIAbstractLinearModelTest >> regression [
 
 	^ self subclassResponsibility
 ]
 
-{ #category : 'running' }
+{ #category : #running }
 AIAbstractLinearModelTest >> setUp [
 
 	super setUp.
@@ -47,7 +46,7 @@ AIAbstractLinearModelTest >> setUp [
 	fixture := AILinearRegressionFixture new
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AIAbstractLinearModelTest >> testInconsistentFitOnDimension [
 
 	| input output |
@@ -57,7 +56,7 @@ AIAbstractLinearModelTest >> testInconsistentFitOnDimension [
 	self should: [ model fitX: input y: output ] raise: Error
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AIAbstractLinearModelTest >> testPredictionWithNonFittedModel [
 
 	| input output |
@@ -66,7 +65,7 @@ AIAbstractLinearModelTest >> testPredictionWithNonFittedModel [
 	self should: [ output := model predict: input ] raise: Error
 ]
 
-{ #category : 'tests' }
+{ #category : #tests }
 AIAbstractLinearModelTest >> testWeightedSumOf [
 
 	model bias: 2.
