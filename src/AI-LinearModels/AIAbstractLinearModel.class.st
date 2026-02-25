@@ -141,6 +141,12 @@ AIAbstractLinearModel >> initialize [
 ]
 
 { #category : 'initialization' }
+AIAbstractLinearModel >> initializeRandomWeightsOfSize: aNumber [
+
+	self initializeRandomWeightsOfSize: aNumber random: Random new
+]
+
+{ #category : 'initialization' }
 AIAbstractLinearModel >> initializeRandomWeightsOfSize: aNumber random: aRandom [
 
 	bias := aRandom next.
